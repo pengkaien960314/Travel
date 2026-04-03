@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#0f766e">
     <title>光旅 Lumina Voyage</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>tailwind.config = { darkMode: 'class', }</script>
+    <script>
+        tailwind.config = { darkMode: 'class', }
+    </script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -71,11 +75,78 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
     </header>
+
+    <section class="hero-bg h-72 flex flex-col justify-end px-6 pb-8 text-white relative mt-[-80px] pt-24 rounded-b-[40px] shadow-sm">
+        <div class="z-10">
+            <h1 class="text-3xl font-light drop-shadow-md">晚安，想去哪？</h1>
+            <p class="text-lg font-medium mt-1 text-slate-100 drop-shadow-md">今天適合找個地方看日落</p>
+        </div>
+        
+        <div id="search-bar" class="z-10 mt-6 glass text-slate-700 dark:text-slate-200 rounded-3xl px-5 py-4 flex items-center shadow-lg cursor-pointer transition-transform hover:scale-[1.02]">
+            <i class="fa-solid fa-magnifying-glass text-teal-700 dark:text-teal-400 text-xl"></i>
+            <span class="flex-1 text-sm ml-3 text-slate-500 dark:text-slate-300">下一站，去哪裡看夕陽？</span>
+            <button id="voice-btn" class="bg-teal-700 dark:bg-teal-600 text-white w-9 h-9 rounded-full flex items-center justify-center hover:bg-teal-600 dark:hover:bg-teal-500 transition shadow-md">
+                <i class="fa-solid fa-microphone text-sm"></i>
+            </button>
+        </div>
+    </section>
+
+    <section class="px-6 mt-6">
+        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none p-3 grid grid-cols-4 gap-2 transition-colors duration-300 border border-transparent dark:border-slate-700">
+            <div class="hover:bg-slate-50 dark:hover:bg-slate-700 flex flex-col items-center py-3 rounded-2xl cursor-pointer transition-all">
+                <i class="fa-solid fa-plane text-2xl text-teal-600 dark:text-teal-400"></i>
+                <span class="text-[11px] font-medium text-slate-600 dark:text-slate-300 mt-1">機票</span>
+            </div>
+            <div class="hover:bg-slate-50 dark:hover:bg-slate-700 flex flex-col items-center py-3 rounded-2xl cursor-pointer transition-all">
+                <i class="fa-solid fa-bed text-2xl text-teal-600 dark:text-teal-400"></i>
+                <span class="text-[11px] font-medium text-slate-600 dark:text-slate-300 mt-1">旅宿</span>
+            </div>
+            <div class="hover:bg-slate-50 dark:hover:bg-slate-700 flex flex-col items-center py-3 rounded-2xl cursor-pointer transition-all">
+                <i class="fa-solid fa-map-location-dot text-2xl text-teal-600 dark:text-teal-400"></i>
+                <span class="text-[11px] font-medium text-slate-600 dark:text-slate-300 mt-1">行程</span>
+            </div>
+            <div class="hover:bg-slate-50 dark:hover:bg-slate-700 flex flex-col items-center py-3 rounded-2xl cursor-pointer transition-all">
+                <i class="fa-solid fa-ticket text-2xl text-teal-600 dark:text-teal-400"></i>
+                <span class="text-[11px] font-medium text-slate-600 dark:text-slate-300 mt-1">票券</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="px-6 mt-8">
+        <div class="flex justify-between items-end mb-4">
+            <h2 class="font-bold text-lg text-slate-800 dark:text-white transition-colors">為你推薦 <span class="text-amber-500 dark:text-amber-400 text-xs ml-1 font-normal bg-amber-50 dark:bg-amber-900/30 px-2 py-1 rounded-full">✨ AI 嚴選</span></h2>
+        </div>
+        <div id="feed-container" class="grid grid-cols-2 gap-4">
+            </div>
+    </section>
+
+    <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[420px] bg-white dark:bg-slate-800 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between px-6 py-3 text-[10px] z-30 rounded-t-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.05)] transition-colors duration-300">
+        <div class="flex flex-col items-center cursor-pointer text-teal-700 dark:text-teal-400">
+            <i class="fa-solid fa-compass text-2xl mb-1"></i>
+            <span class="font-bold">探索</span>
+        </div>
+        <div class="flex flex-col items-center cursor-pointer text-slate-300 dark:text-slate-500">
+            <i class="fa-solid fa-lightbulb text-2xl mb-1"></i>
+            <span>靈感</span>
+        </div>
+        <div class="relative -top-6">
+            <div class="w-14 h-14 bg-gradient-to-tr from-teal-700 to-teal-400 text-white rounded-full flex items-center justify-center shadow-[0_8px_20px_rgba(15,118,110,0.4)] text-2xl border-4 border-slate-50 dark:border-slate-900 cursor-pointer">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+        </div>
+        <div class="flex flex-col items-center cursor-pointer text-slate-300 dark:text-slate-500">
+            <i class="fa-solid fa-calendar-check text-2xl mb-1"></i>
+            <span>行程</span>
+        </div>
+        <div class="flex flex-col items-center cursor-pointer text-slate-300 dark:text-slate-500">
+            <i class="fa-regular fa-user text-2xl mb-1"></i>
+            <span>我的</span>
+        </div>
+    </nav>
 
     <div id="auth-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] hidden flex items-center justify-center transition-opacity opacity-0">
         <div class="bg-white dark:bg-slate-800 w-[90%] max-w-[340px] rounded-3xl p-6 relative shadow-2xl transform scale-95 transition-transform duration-300" id="auth-modal-content">
@@ -89,11 +160,11 @@
                 <form id="login-form" class="flex flex-col gap-4">
                     <div>
                         <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">電子郵件 / 帳號</label>
-                        <input type="email" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-teal-500 dark:focus:border-teal-400 transition dark:text-white" placeholder="輸入您的帳號">
+                        <input type="email" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-teal-500 dark:text-white" placeholder="輸入您的帳號">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">密碼</label>
-                        <input type="password" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-teal-500 dark:focus:border-teal-400 transition dark:text-white" placeholder="輸入密碼">
+                        <input type="password" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-teal-500 dark:text-white" placeholder="輸入密碼">
                     </div>
                     <button type="submit" class="w-full bg-teal-600 text-white font-bold py-3 rounded-xl mt-2 hover:bg-teal-700 transition shadow-lg shadow-teal-600/30">
                         登入
@@ -103,20 +174,6 @@
                 <div class="mt-5 text-center text-sm text-slate-500 dark:text-slate-400">
                     還沒有帳號嗎？ <button id="go-to-register" class="text-teal-600 dark:text-teal-400 font-bold hover:underline">建立新帳號</button>
                 </div>
-
-                <div class="mt-6 pt-6 border-t border-slate-100 dark:border-slate-700">
-                    <p class="text-center text-xs text-slate-400 mb-4">或使用以下方式登入</p>
-                    <div class="flex flex-col gap-3">
-                        <button class="w-full flex items-center justify-center gap-3 bg-white border border-slate-200 text-slate-700 font-medium py-2.5 rounded-xl hover:bg-slate-50 transition shadow-sm">
-                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5" alt="Google">
-                            使用 Google 登入
-                        </button>
-                        <button class="w-full flex items-center justify-center gap-3 bg-[#1877F2] text-white font-medium py-2.5 rounded-xl hover:bg-[#0C63D4] transition shadow-sm">
-                            <i class="fa-brands fa-facebook text-lg"></i>
-                            使用 Facebook 登入
-                        </button>
-                    </div>
-                </div>
             </div>
 
             <div id="register-form-view" class="hidden">
@@ -124,17 +181,17 @@
                 <form id="register-form" class="flex flex-col gap-4">
                     <div>
                         <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">使用者名稱</label>
-                        <input type="text" id="reg-name" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-teal-500 dark:focus:border-teal-400 transition dark:text-white" placeholder="例如：彭楷恩">
+                        <input type="text" id="reg-name" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-teal-500 dark:text-white" placeholder="例如：彭楷恩">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">電子郵件</label>
-                        <input type="email" id="reg-email" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-teal-500 dark:focus:border-teal-400 transition dark:text-white" placeholder="輸入您的 Email">
+                        <input type="email" id="reg-email" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-teal-500 dark:text-white" placeholder="輸入您的 Email">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-500 dark:text-slate-400 mb-1">設定密碼</label>
-                        <input type="password" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-teal-500 dark:focus:border-teal-400 transition dark:text-white" placeholder="至少 6 個字元">
+                        <input type="password" required class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-teal-500 dark:text-white" placeholder="至少 6 個字元">
                     </div>
-                    <button type="submit" class="w-full bg-slate-800 dark:bg-white text-white dark:text-slate-900 font-bold py-3 rounded-xl mt-2 hover:bg-slate-700 dark:hover:bg-slate-100 transition shadow-lg">
+                    <button type="submit" class="w-full bg-slate-800 dark:bg-white text-white dark:text-slate-900 font-bold py-3 rounded-xl mt-2 hover:bg-slate-700 transition shadow-lg">
                         註冊並登入
                     </button>
                 </form>
