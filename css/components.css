@@ -1,27 +1,52 @@
 /* * ========================================================
  * 檔案名稱: css/components.css
- * 功能描述: 存放獨立組件的進階樣式 (如毛玻璃特效、深色模式對應)
+ * 專案名稱: 光旅 Lumina Voyage
+ * 功能描述: 存放獨立組件的進階樣式 (如毛玻璃特效、背景與卡片懸浮)
+ * 開發者: [你的名字/學號]
  * ========================================================
  */
 
+/* === 1. 沉浸式 Hero 漸層背景 === */
 .hero-bg {
-    background: linear-gradient(180deg, rgba(15, 118, 110, 0.4) 0%, rgba(15, 118, 110, 0.9) 100%), 
+    /* 淺色模式：使用湖水綠 (Teal) 的半透明漸層疊加在圖片上 */
+    background: linear-gradient(180deg, rgba(15, 118, 110, 0.4) 0%, rgba(15, 118, 110, 0.8) 100%), 
                 url('https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?q=80&w=1000&auto=format&fit=crop') center/cover no-repeat;
 }
 
-/* 現代毛玻璃效果 (加入深色模式支援) */
-.glass {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+/* 深色模式下的 Hero 背景微調 (改用深藍灰色調，更有夜晚的感覺) */
+html.dark .hero-bg {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, rgba(15, 23, 42, 0.95) 100%), 
+                url('https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?q=80&w=1000&auto=format&fit=crop') center/cover no-repeat;
 }
 
-/* 旅遊卡片懸浮特效 */
+/* === 2. 現代毛玻璃效果 (Glassmorphism) === */
+.glass {
+    /* 淺色模式毛玻璃 */
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px); /* 支援 Safari */
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* 深色模式下的毛玻璃 */
+html.dark .glass {
+    background: rgba(30, 41, 59, 0.6); /* 對應 Tailwind 的 slate-800 帶透明度 */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* 邊框變暗，避免太刺眼 */
+}
+
+/* === 3. 旅遊卡片與按鈕懸浮特效 === */
 .travel-card {
+    /* 加入平滑的過渡動畫時間曲線 */
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .travel-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px -10px rgba(15, 118, 110, 0.2);
+    /* 滑鼠游標移上去時，稍微往上浮動並加深陰影 */
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -10px rgba(15, 118, 110, 0.25);
+}
+
+/* 深色模式的卡片懸浮陰影 (改用純黑陰影) */
+html.dark .travel-card:hover {
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.6);
 }
