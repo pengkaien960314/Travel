@@ -1,50 +1,22 @@
 {
   "name": "光旅 Lumina Voyage",
   "short_name": "光旅",
-  "description": "從台北出發，探索世界的極致旅遊平台 • AI 智慧推薦 • 完美 UI/UX",
-  "start_url": "./",
+  "description": "AI 驅動的新世代極致旅遊體驗平台",
+  "start_url": "/index.html",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
   "background_color": "#f8fafc",
   "theme_color": "#0f766e",
-  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "https://picsum.photos/id/1015/192/192",
+      "src": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=192&h=192&fit=crop",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     },
     {
-      "src": "https://picsum.photos/id/1015/512/512",
+      "src": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=512&h=512&fit=crop",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
-  ],
-  "shortcuts": [
-    {
-      "name": "AI 規劃師",
-      "short_name": "AI",
-      "description": "30 秒生成專屬行程",
-      "url": "./?action=ai",
-      "icons": [{ "src": "https://picsum.photos/id/1015/192/192", "sizes": "192x192" }]
-    },
-    {
-      "name": "我的行程",
-      "short_name": "行程",
-      "url": "./?action=trips",
-      "icons": [{ "src": "https://picsum.photos/id/1015/192/192", "sizes": "192x192" }]
-    }
-  ],
-  "screenshots": [
-    {
-      "src": "https://picsum.photos/id/1015/1280/720",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    }
-  ],
-  "categories": ["travel", "lifestyle"],
-  "prefer_related_applications": false
+  ]
 }
