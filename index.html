@@ -64,6 +64,11 @@
         /* 未來擴展用 */
         .gen-ui { transition: all 0.5s ease; }
     </style>
+    <script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+  }
+</script>
 </head>
 <body class="max-w-[420px] mx-auto min-h-screen bg-slate-50">
 
