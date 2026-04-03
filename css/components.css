@@ -1,0 +1,27 @@
+/* * ========================================================
+ * 檔案名稱: css/components.css
+ * 功能描述: 存放獨立組件的進階樣式 (如毛玻璃特效、深色模式對應)
+ * ========================================================
+ */
+
+.hero-bg {
+    background: linear-gradient(180deg, rgba(15, 118, 110, 0.4) 0%, rgba(15, 118, 110, 0.9) 100%), 
+                url('https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?q=80&w=1000&auto=format&fit=crop') center/cover no-repeat;
+}
+
+/* 現代毛玻璃效果 (加入深色模式支援) */
+.glass {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* 旅遊卡片懸浮特效 */
+.travel-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.travel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px -10px rgba(15, 118, 110, 0.2);
+}
