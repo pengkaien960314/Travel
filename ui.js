@@ -1,4 +1,9 @@
-// ui.js
+/**
+ * ========================================================
+ * 檔案名稱: ui.js
+ * 功能描述: 畫面渲染與互動層 (View)，負責操作 DOM、渲染卡片與綁定事件
+ * ========================================================
+ */
 
 // 渲染推薦卡片的函式
 export function renderFeed(items) {
@@ -61,3 +66,30 @@ export function setupUIEvents() {
         });
     }
 }
+
+// 新增深色模式控制函式
+export function setupThemeToggle() {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement; // 抓取 <html> 標籤
+
+    // 檢查 localStorage 是否有儲存過使用者的偏好
+    if (localStorage.getItem('theme') === 'dark') {
+        htmlElement.classList.add('dark');
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            // 切換 dark class
+            htmlElement.classList.toggle('dark');
+            
+            // 把使用者的選擇存進 localStorage，這樣下次打開網頁還會記憶！
+            if (htmlElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    }
+}
+
+
