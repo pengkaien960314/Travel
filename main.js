@@ -1,6 +1,10 @@
-// main.js
+/**
+ * ========================================================
+ * 檔案名稱: main.js
+ * 功能描述: 系統主控中心 (Controller)，負責初始化 App、串接資料與畫面
+ * ========================================================
+ */
 
-// 從拆分好的模組中引入需要的工具
 import { fetchRecommendations } from './api.js';
 import { renderFeed, setupUIEvents } from './ui.js';
 
