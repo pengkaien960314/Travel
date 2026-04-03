@@ -79,23 +79,167 @@ export function setupThemeToggle() {
     }
 }
 
-// === 3. Google 風格頭像彈出選單 ===
+// === 3.狀態管理：更新 UI 以符合登入/登出狀態 ===
+function updateAuthStateUI() {
+    const userJson = localStorage.getItem('currentUser');
+    
+    // 抓取 DOM 元素
+    const loggedOutMenu = document.getElementById('logged-out-menu');
+    const loggedInMenu = document.getElementById('logged-in-menu');
+    const avatarImg = document.getElementById('avatar-img');
+    const popupAvatar = document.getElementById('popup-avatar');
+    const nameDisplay = document.getElementById('user-name-display');
+    const emailDisplay = document.getElementById('user-email-display');
+
+    if (userJson) {
+        // [已登入狀態]
+        const user = JSON.parse(userJson);
+        loggedOutMenu.classList.add('hidden');
+        loggedInMenu.classList.remove('hidden');
+        
+        // 替換頭像與資訊 (使用 Dicebear API 動態生成專屬頭像)
+        const avatarUrl = `https://api.dicebear.com/7.x/notionists/svg?seed=${user.name}&backgroundColor=0f766e`;
+        avatarImg.src = avatarUrl;
+        popupAvatar.src = avatarUrl;
+        nameDisplay.textContent = user.name;
+        emailDisplay.textContent = user.email;
+    } else {
+        // [未登入狀態]
+        loggedOutMenu.classList.remove('hidden');
+        loggedInMenu.classList.add('hidden');
+        
+        // 替換成匿名頭像
+        avatarImg.src = 'https://api.dicebear.com/7.x/initials/svg?seed=User&backgroundColor=slate';
+    }
+}
+
+// === 頭像彈出選單控制 ===
 export function setupProfilePopup() {
     const avatarBtn = document.getElementById('avatar-btn');
     const profilePopup = document.getElementById('profile-popup');
 
+    // 每次畫面載入時，先檢查一次登入狀態
+    updateAuthStateUI();
+
     if (avatarBtn && profilePopup) {
-        // 點擊頭像開關視窗
         avatarBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // 防止點擊事件冒泡
+            e.stopPropagation();
             profilePopup.classList.toggle('hidden');
         });
 
-        // 點擊視窗外部時，自動關閉視窗 (高級 UX 體驗)
         document.addEventListener('click', (e) => {
             if (!profilePopup.contains(e.target) && !avatarBtn.contains(e.target)) {
                 profilePopup.classList.add('hidden');
             }
+        });
+    }
+}
+
+// === 登入/註冊 Modal 流程控制 (最核心的高端寫法) ===
+export function setupAuthLogic() {
+    const authModal = document.getElementById('auth-modal');
+    const authModalContent = document.getElementById('auth-modal-content');
+    const openLoginBtn = document.getElementById('open-login-btn');
+    const closeModalBtn = document.getElementById('close-modal-btn');
+    const profilePopup = document.getElementById('profile-popup');
+
+    // 表單視窗切換
+    const loginView = document.getElementById('login-form-view');
+    const registerView = document.getElementById('register-form-view');
+    const goToRegisterBtn = document.getElementById('go-to-register');
+    const goToLoginBtn = document.getElementById('go-to-login');
+
+    // 表單提交與登出按鈕
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    // 1. 打開 Modal
+    function openModal() {
+        authModal.classList.remove('hidden');
+        // 加上一點延遲讓 Tailwind 的 opacity 動畫生效
+        setTimeout(() => {
+            authModal.classList.remove('opacity-0');
+            authModalContent.classList.remove('scale-95');
+        }, 10);
+        profilePopup.classList.add('hidden'); // 關閉頭像選單
+        
+        // 預設顯示登入頁
+        loginView.classList.remove('hidden');
+        registerView.classList.add('hidden');
+    }
+
+    // 2. 關閉 Modal
+    function closeModal() {
+        authModal.classList.add('opacity-0');
+        authModalContent.classList.add('scale-95');
+        setTimeout(() => {
+            authModal.classList.add('hidden');
+        }, 300); // 等待動畫結束再隱藏
+    }
+
+    // 綁定開關事件
+    if(openLoginBtn) openLoginBtn.addEventListener('click', openModal);
+    if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+    
+    // 點擊 Modal 黑色半透明背景也能關閉
+    authModal.addEventListener('click', (e) => {
+        if (e.target === authModal) closeModal();
+    });
+
+    // 3. 視窗內部切換 (登入 <-> 註冊)
+    goToRegisterBtn.addEventListener('click', () => {
+        loginView.classList.add('hidden');
+        registerView.classList.remove('hidden');
+    });
+
+    goToLoginBtn.addEventListener('click', () => {
+        registerView.classList.add('hidden');
+        loginView.classList.remove('hidden');
+    });
+
+    // 4. 處理「註冊」事件 (儲存資料到 localStorage)
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // 阻止網頁重新整理
+        
+        const name = document.getElementById('reg-name').value;
+        const email = document.getElementById('reg-email').value;
+
+        // 模擬註冊成功，把資料存進瀏覽器
+        const userData = { name: name, email: email };
+        localStorage.setItem('currentUser', JSON.stringify(userData));
+
+        alert('🎉 註冊成功！歡迎加入光旅。');
+        closeModal();
+        updateAuthStateUI(); // 立刻更新右上角頭像
+        registerForm.reset(); // 清空表單
+    });
+
+    // 5. 處理「登入」事件 (為了展示，輸入任意帳密都會當作剛註冊的人登入)
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // 如果沒有註冊過，我們給一個預設帳號
+        let userData = JSON.parse(localStorage.getItem('currentUser'));
+        if (!userData) {
+            userData = { name: 'VIP 會員', email: 'user@example.com' };
+            localStorage.setItem('currentUser', JSON.stringify(userData));
+        }
+
+        alert('✅ 登入成功！');
+        closeModal();
+        updateAuthStateUI();
+        loginForm.reset();
+    });
+
+    // 6. 處理「登出」事件
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+            // 清除瀏覽器記憶
+            localStorage.removeItem('currentUser');
+            alert('您已登出，期待下次見面！');
+            updateAuthStateUI(); // 立刻變回未登入頭像
+            profilePopup.classList.add('hidden');
         });
     }
 }
