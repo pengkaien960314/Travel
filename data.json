@@ -1,4 +1,6 @@
 {
+  "_comment": "檔案名稱: data.json | 功能: 模擬後端回傳的推薦行程資料庫",
+
   "recommendations": [
     {
       "id": 1,
@@ -41,4 +43,5 @@
       "themeColor": "amber"
     }
   ]
+}
 }
