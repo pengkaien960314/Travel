@@ -9,8 +9,8 @@
  */
 
 // 從拆分好的模組中引入需要的工具
-import { fetchRecommendations } from './api.js';
-import { renderFeed, setupUIEvents, setupThemeToggle, setupProfilePopup } from './ui.js';
+import { fetchRecommendations } from './api.js'; 
+import { renderFeed, setupUIEvents, setupThemeToggle, setupProfilePopup, setupAuthLogic } from './ui.js';
 
 // 確保 HTML DOM 完全載入後才開始執行 JS 邏輯
 document.addEventListener('DOMContentLoaded', async () => {
