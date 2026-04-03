@@ -1,0 +1,44 @@
+{
+  "recommendations": [
+    {
+      "id": 1,
+      "title": "Santorini 愛琴海日落",
+      "location": "希臘",
+      "imageUrl": "https://images.unsplash.com/photo-1613395877344-13d4a8e0d49e?q=80&w=600&auto=format&fit=crop",
+      "tags": ["碳中和", "蜜月"],
+      "duration": "5 天 4 夜",
+      "price": "NT$68,000",
+      "themeColor": "emerald"
+    },
+    {
+      "id": 2,
+      "title": "極光下的世界盡頭",
+      "location": "冰島",
+      "imageUrl": "https://images.unsplash.com/photo-1520769945061-0a448c463865?q=80&w=600&auto=format&fit=crop",
+      "tags": ["極光", "冒險"],
+      "duration": "8 天 7 夜",
+      "price": "NT$95,000",
+      "themeColor": "purple"
+    },
+    {
+      "id": 3,
+      "title": "富士山河口湖絕景",
+      "location": "日本",
+      "imageUrl": "https://images.unsplash.com/photo-1493780474015-ba834fd0ce2f?q=80&w=600&auto=format&fit=crop",
+      "tags": ["自駕", "溫泉"],
+      "duration": "4 天 3 夜",
+      "price": "NT$32,000",
+      "themeColor": "rose"
+    },
+    {
+      "id": 4,
+      "title": "峇里島叢林 VILLA",
+      "location": "印尼",
+      "imageUrl": "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=600&auto=format&fit=crop",
+      "tags": ["放鬆", "海島"],
+      "duration": "6 天 5 夜",
+      "price": "NT$45,000",
+      "themeColor": "amber"
+    }
+  ]
+}
